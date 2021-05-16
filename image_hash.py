@@ -1,9 +1,7 @@
-__name__ = 'hash_image'
 import hashlib
 import png
 from os import urandom
 
-salt = os.urandom(16)
 
 def create_hashed_image(password, image_name = 'encrypted_image.png',image_size = 64):
     password = str.encode(password)
