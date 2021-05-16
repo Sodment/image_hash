@@ -1,19 +1,16 @@
 from array import array
-import hashlib 
+import hashlib
+from typing import final
 import png
 
 
 
 def main():
-    dk = hashlib.pbkdf2_hmac('sha256', b'password', b'salt', 100000, dklen=256)
-    #print(type(dk))
-    dk = bytearray(dk)
-    # dk = int.from_bytes(dk, byteorder='big', signed=True)
-    with open('encrypted_image.png', 'wb') as f:
-        w = png.Writer(1, 1, greyscale=False)
-        w.write_packed(f, dk)
-    print("Done")
+    dk = hashlib.pbkdf2_hmac('sha256', b'dupa', b'salt', 100000, dklen=64**2)
 
+    with open('encrypted_image.png', 'wb') as f:
+        w = png.Writer(64, 64, greyscale=True)
+        w.write_array(f, dk)
 
 if __name__ == "__main__":
     main()
